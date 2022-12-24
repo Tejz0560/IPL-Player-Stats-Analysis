@@ -35,5 +35,13 @@ def teamrecord():
 
     return jsonify(response)
 
+@app.route("/api/batsmanrecord")
+def batsmanrecord():
+    batsman = request.args.get("batsman")
+
+    response = ipl_record.batsmanAPI(batsman)
+
+    return jsonify(response)
+
 
 app.run(debug=True)
