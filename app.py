@@ -43,5 +43,12 @@ def batsmanrecord():
 
     return jsonify(response)
 
+@app.route("/api/bowlerrecord")
+def bowlerrecord():
+    bowler = request.args.get('bowler')
+
+    response = ipl_record.bowlerAPI(bowler)
+
+    return jsonify(response)
 
 app.run(debug=True)
