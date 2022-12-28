@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import requests
 
 matches = pd.read_csv('D:\\temp\\My_Work\\Player Stats Analysis\\IPL-Player-Stats-Analysis\\IPL_Data.csv')
 balls = pd.read_csv('D:\\temp\\My_Work\\Player Stats Analysis\\IPL-Player-Stats-Analysis\\IPL_Ball_by_Ball.csv')
@@ -10,6 +11,12 @@ option = st.sidebar.selectbox('select one',['All Teams','Team Record','Team Vs T
 
 if option == 'All Teams':
     st.title('All Teams')
+    response = requests.get('http://127.0.0.1:5000/api/allteams')
+    teams = response.json()['teams']
+    for i in teams:
+        st.text(i)
+    # st.image('https://www.iplt20.com/teams/chennai-super-kings')
+    
 
 elif option == 'Team Record':
     st.title('Team Record')
