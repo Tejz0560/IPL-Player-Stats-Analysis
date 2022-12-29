@@ -2,8 +2,11 @@ import streamlit as st
 import pandas as pd
 import requests
 
-matches = pd.read_csv('D:\\temp\\My_Work\\Player Stats Analysis\\IPL-Player-Stats-Analysis\\IPL_Data.csv')
-balls = pd.read_csv('D:\\temp\\My_Work\\Player Stats Analysis\\IPL-Player-Stats-Analysis\\IPL_Ball_by_Ball.csv')
+matches = pd.read_csv('D:\\temp\\My_Work\\Player Stats Analysis\\IPL-Player-Stats-Analysis\\IPL_Data_cleaned.csv')
+balls = pd.read_csv('D:\\temp\\My_Work\\Player Stats Analysis\\IPL-Player-Stats-Analysis\\IPL_Ball_by_Ball_cleaned.csv')
+
+
+st.set_page_config(layout="wide")
 
 st.sidebar.title('IPL Stats')
 
@@ -13,9 +16,12 @@ if option == 'All Teams':
     st.title('All Teams')
     response = requests.get('http://127.0.0.1:5000/api/allteams')
     teams = response.json()['teams']
-    for i in teams:
-        st.text(i)
-    # st.image('https://www.iplt20.com/teams/chennai-super-kings')
+    teams.remove('Rising Pune Supergiantss')
+    cols = st.columns(5)
+    for i in range(len(teams)):
+        cols[i%5].image(f'Images\\IPL teams\\{teams[i]}.jpg')
+        cols[i%5].subheader(teams[i])
+    # st.image('https://www.iplt20.com/teams/chennai-super-kings') 
     
 
 elif option == 'Team Record':

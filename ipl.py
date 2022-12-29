@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # ipl_matches = "IPL_Data.csv"
-matches = pd.read_csv('D:\\temp\\My_Work\\Player Stats Analysis\\IPL-Player-Stats-Analysis\\IPL_Data.csv')
+matches = pd.read_csv('D:\\temp\\My_Work\\Player Stats Analysis\\IPL-Player-Stats-Analysis\\IPL_Data_cleaned.csv')
 
 def teamsAPI():
     teams = list(set(list(matches['Team1']) + list(matches['Team2'])))
